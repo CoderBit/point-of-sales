@@ -21,74 +21,6 @@
   margin: 5px;
 }
 
-.box {
-  width: 100px;
-  height: 110px;
-  border-radius: 10px;
-  // border: 1px solid #d4d4d4;
-  float: left;
-  margin: 6px 22px;
-  position: relative;
-}
-
-.box img {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0.8;
-  transition: 0.5s ease;
-  background-color: #008cba;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.text {
-  color: white;
-  font-size: 10px;
-  font-weight: bold;
-  position: absolute;
-  top: 20px;
-  left: 10px;
-  text-transform: uppercase;
-}
-
-.details {
-  text-align: center;
-  position: relative;
-  opacity: 0;
-  transition: .5s ease-in-out;
-}
-
-.box:hover .details {
-  opacity: 1;
-  transition: .5s ease-in-out;
-}
-
-.price {
-  color: white;
-  font-size: 10px;
-  font-weight: bold;
-  position: absolute;
-  top: 40px;
-  width: 100%;
-}
-
-.description {
-  color: white;
-  font-size: 9px;
-  position: absolute;
-  top: 61px;
-}
 
 /** prodcut table **/
 
@@ -116,6 +48,7 @@
   background-color: #fff;
   margin: 10px 0;
   border-radius: 5px;
+  box-shadow: 0px 1px 5px -3px rgba(0,0,0,.2);
 }
 
 .product-heading,
@@ -217,6 +150,7 @@ input[type="number"] {
   border: 1px solid transparent;
   cursor: pointer;
   border-radius: 5px;
+  font-weight: bold;
 }
 
 .savebtm {
@@ -228,6 +162,7 @@ input[type="number"] {
   border: 1px solid transparent;
   cursor: pointer;
   border-radius: 5px;
+  font-weight: bold;
 }
 
 .headings p, .product_list p, .cart_details p {
@@ -242,10 +177,22 @@ i.fa {
 .fa.fa-times-circle {
   color: #e74c3c;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.fa.fa-times-circle:hover {
+  color: #c0392b;
+  transition: 0.3s ease-in-out;
 }
 
 .fa.fa-minus-square,
 .fa.fa-plus-square {
   color: #dddddd;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.fa.fa-minus-square:hover, .fa.fa-plus-square:hover {
+  color: #aaaaaa;
+  transition: 0.3s ease-in-out;
 }
