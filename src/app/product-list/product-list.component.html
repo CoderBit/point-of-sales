@@ -1,5 +1,5 @@
 
-<div class="box" *ngFor="let product of products">
+<div class="box" *ngFor="let product of products" (click)="addToCart(product)">
   <img *ngIf="product.image !== undefined" src="../../assets/images/{{product.image}}" alt="{{product.name}}" />
   <div class="overlay">
     <p class="text">{{product.name}}</p>

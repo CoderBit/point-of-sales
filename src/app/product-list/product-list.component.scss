@@ -1,4 +1,6 @@
 
+$main-bg-color: #ffffff;
+
 .box {
   width: 100px;
   height: 110px;
@@ -30,7 +32,7 @@
 }
 
 .text {
-  color: white;
+  color: $main-bg-color;
   font-size: 10px;
   font-weight: bold;
   position: absolute;
@@ -52,7 +54,7 @@
 }
 
 .price {
-  color: white;
+  color: $main-bg-color;
   font-size: 10px;
   font-weight: bold;
   position: absolute;
@@ -61,8 +63,9 @@
 }
 
 .description {
-  color: white;
+  color: $main-bg-color;
   font-size: 9px;
   position: absolute;
   top: 61px;
+  width: 100%;
 }
