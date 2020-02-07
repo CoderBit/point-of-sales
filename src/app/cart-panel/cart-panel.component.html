@@ -7,42 +7,25 @@
 </div>
 
 <div class="product-items">
-  <div class="no-data">
+  <div class="no-data" *ngIf="cartList.length === 0">
     There are no products
   </div>
-  <div class="product_list">
+  <div class="product_list" *ngFor="let catrItem of cartList">
     <div class="icon">
       <p><i class="fa fa-times-circle" aria-hidden="true"></i></p>
     </div>
     <div class="productH">
-      <p>Sweater</p>
+      <p>{{ catrItem.name }}</p>
     </div>
-    <div class="priceH"><p>2000</p></div>
+    <div class="priceH"><p>{{ catrItem.price }}</p></div>
     <div class="qtyH">
       <p>
         <i class="fa fa-minus-square" aria-hidden="true"></i>
-        <input type="number" />
+        <input type="number" value="{{ catrItem.count }}"/>
         <i class="fa fa-plus-square" aria-hidden="true"></i>
       </p>
     </div>
-    <div class="totalH"><p>4000 INR</p></div>
-  </div>
-  <div class="product_list">
-    <div class="icon">
-      <p><i class="fa fa-times-circle" aria-hidden="true"></i></p>
-    </div>
-    <div class="productH">
-      <p>Sweater</p>
-    </div>
-    <div class="priceH"><p>2000</p></div>
-    <div class="qtyH">
-      <p>
-        <i class="fa fa-minus-square" aria-hidden="true"></i>
-        <input type="number" />
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-      </p>
-    </div>
-    <div class="totalH"><p>4000 INR</p></div>
+    <div class="totalH"><p>{{ catrItem.price }} INR</p></div>
   </div>
 </div>
 
