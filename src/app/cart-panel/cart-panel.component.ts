@@ -11,6 +11,11 @@ export class CartPanelComponent implements OnInit, OnDestroy {
 
   cartList = [];
   subtotal = 0.000;
+  tax = 0.000;
+  taxPercentage = '0';
+  discount = 0.000;
+  discountPercentage = '0';
+  total = 0.000;
   private subscription: Subscription;
 
   constructor(private productSerive: ProductService) { }
@@ -42,6 +47,9 @@ export class CartPanelComponent implements OnInit, OnDestroy {
   calculateSubtotal() {
     if (this.cartList.length > 0) {
       this.subtotal = this.cartList.reduce((acc, cur) => acc + (+cur.price * cur.count), 0);
+      this.tax = this.cartList.length > 0 ? this.subtotal * (+this.taxPercentage / 100) : 0.000;
+      this.discount = this.cartList.length > 0 ? this.subtotal * (+this.discountPercentage / 100) : 0.000;
+      this.total = this.subtotal + this.tax + this.discount;
     }
   }
 

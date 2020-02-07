@@ -25,7 +25,7 @@
         <i class="fa fa-plus-square" aria-hidden="true" (click)="increase(catrItem)"></i>
       </p>
     </div>
-    <div class="totalH"><p>{{ catrItem.price * catrItem.count }} EUR</p></div>
+    <div class="totalH"><p>{{ catrItem.price * catrItem.count }} INR</p></div>
   </div>
 </div>
 
@@ -45,7 +45,7 @@
     </div>
     <div class="cright">
       <p>10%</p>
-      <p>04.40 EUR</p>
+      <p>{{ tax }} EUR</p>
     </div>
   </div>
   <div class="cartrow">
@@ -54,7 +54,7 @@
     </div>
     <div class="cright">
       <p>10%</p>
-      <p>0.40 EUR</p>
+      <p>{{ discount }} EUR</p>
     </div>
   </div>
   <div class="cartrow">
@@ -62,7 +62,7 @@
       <p>Total</p>
     </div>
     <div class="cright">
-      <p>4000 EUR</p>
+      <p>{{ total }} EUR</p>
       <p></p>
     </div>
   </div>
