@@ -56,7 +56,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
     this.productSerive.decreaseItem(catrItem);
   }
 
-  calculateSubtotal() {
+  private calculateSubtotal() {
     if (this.cartList.length > 0) {
       this.subtotal = this.cartList.reduce((acc, cur) => acc + (+cur.price * cur.count), 0);
       if (this.taxPercentage !== 'N/A') {
@@ -69,7 +69,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  updateTax() {
+  private updateTax() {
     const input = (this.taxPercentageRef.nativeElement as HTMLInputElement);
     const result = fromEvent(input, 'keyup').pipe(debounceTime(700));
     result.subscribe(x => {
@@ -79,7 +79,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  updateDiscount() {
+  private updateDiscount() {
     const input = (this.discountPercentageRef.nativeElement as HTMLInputElement);
     const result = fromEvent(input, 'keyup').pipe(debounceTime(700));
     result.subscribe(x => {
@@ -97,6 +97,18 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
     this.discount = 0.000;
     this.discountPercentage = 'N/A';
     this.total = 0.000;
+  }
+
+  formatNumber(num: number) {
+    const numSplit = Math.abs(num).toFixed(3).split('.');
+    let int = numSplit[0];
+    if (int.length > 3) {
+        int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+    }
+
+    const dec = numSplit[1];
+
+    return int + '.' + dec;
   }
 
   ngOnDestroy() {

@@ -17,7 +17,7 @@
     <div class="productH">
       <p>{{ catrItem.name }}</p>
     </div>
-    <div class="priceH"><p>{{ catrItem.price }}</p></div>
+    <div class="priceH"><p>{{ formatNumber(catrItem.price) }}</p></div>
     <div class="qtyH">
       <p>
         <i class="fa fa-minus-square" aria-hidden="true" (click)="decrease(catrItem)"></i>
@@ -25,7 +25,7 @@
         <i class="fa fa-plus-square" aria-hidden="true" (click)="increase(catrItem)"></i>
       </p>
     </div>
-    <div class="totalH"><p>{{ catrItem.price * catrItem.count }} INR</p></div>
+    <div class="totalH"><p>{{ formatNumber(catrItem.price * catrItem.count) }} INR</p></div>
   </div>
 </div>
 
@@ -35,7 +35,7 @@
       <p>Subtotal</p>
     </div>
     <div class="cright">
-      <p>{{ cartList.length > 0 ? subtotal : 0.000 }} EUR</p>
+      <p>{{ cartList.length > 0 ? formatNumber(subtotal) : formatNumber(0.000) }} EUR</p>
       <p>{{ cartList.length }} items</p>
     </div>
   </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="cright">
       <p><input type="text" [(ngModel)]="taxPercentage" #taxPercentageRef>%</p>
-      <p>{{ tax }} EUR</p>
+      <p>{{ formatNumber(tax) }} EUR</p>
     </div>
   </div>
   <div class="cartrow">
@@ -54,7 +54,7 @@
     </div>
     <div class="cright">
       <p><input type="text" [(ngModel)]="discountPercentage" #discountPercentageRef>%</p>
-      <p>{{ discount }} EUR</p>
+      <p>{{ formatNumber(discount) }} EUR</p>
     </div>
   </div>
   <div class="cartrow">
@@ -62,7 +62,7 @@
       <p>Total</p>
     </div>
     <div class="cright total">
-      <p>{{ total }} EUR</p>
+      <p>{{ formatNumber(total) }} EUR</p>
       <p></p>
     </div>
   </div>
