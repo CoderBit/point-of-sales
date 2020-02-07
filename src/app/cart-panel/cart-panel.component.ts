@@ -1,22 +1,26 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ProductService, Product } from '../services/product.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, fromEvent } from 'rxjs';
+import { debounceTime, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart-panel',
   templateUrl: './cart-panel.component.html',
   styleUrls: ['./cart-panel.component.scss']
 })
-export class CartPanelComponent implements OnInit, OnDestroy {
+export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   cartList = [];
   subtotal = 0.000;
   tax = 0.000;
-  taxPercentage = '0';
+  taxPercentage = 'N/A';
   discount = 0.000;
-  discountPercentage = '0';
+  discountPercentage = 'N/A';
   total = 0.000;
   private subscription: Subscription;
+
+  @ViewChild('taxPercentageRef', {static: false}) taxPercentageRef: ElementRef;
+  @ViewChild('discountPercentageRef', {static: false}) discountPercentageRef: ElementRef;
 
   constructor(private productSerive: ProductService) { }
 
@@ -30,6 +34,11 @@ export class CartPanelComponent implements OnInit, OnDestroy {
           this.calculateSubtotal();
         }
       );
+  }
+
+  ngAfterViewInit() {
+    this.updateTax();
+    this.updateDiscount();
   }
 
   removeItem(product: Product) {
@@ -47,10 +56,34 @@ export class CartPanelComponent implements OnInit, OnDestroy {
   calculateSubtotal() {
     if (this.cartList.length > 0) {
       this.subtotal = this.cartList.reduce((acc, cur) => acc + (+cur.price * cur.count), 0);
-      this.tax = this.cartList.length > 0 ? this.subtotal * (+this.taxPercentage / 100) : 0.000;
-      this.discount = this.cartList.length > 0 ? this.subtotal * (+this.discountPercentage / 100) : 0.000;
+      if (this.taxPercentage !== 'N/A') {
+        this.tax = this.cartList.length > 0 ? this.subtotal * (+this.taxPercentage / 100) : 0.000;
+      }
+      if (this.discountPercentage !== 'N/A') {
+        this.discount = this.cartList.length > 0 ? this.subtotal * (+this.discountPercentage / 100) : 0.000;
+      }
       this.total = this.subtotal + this.tax + this.discount;
     }
+  }
+
+  updateTax() {
+    const input = (this.taxPercentageRef.nativeElement as HTMLInputElement);
+    const result = fromEvent(input, 'keyup').pipe(debounceTime(700));
+    result.subscribe(x => {
+      const updatedTaxValue = (x.target as HTMLInputElement).value;
+      this.tax = +updatedTaxValue;
+      this.calculateSubtotal();
+    });
+  }
+
+  updateDiscount() {
+    const input = (this.discountPercentageRef.nativeElement as HTMLInputElement);
+    const result = fromEvent(input, 'keyup').pipe(debounceTime(700));
+    result.subscribe(x => {
+      const updatedDiscountValue = (x.target as HTMLInputElement).value;
+      this.discount = +updatedDiscountValue;
+      this.calculateSubtotal();
+    });
   }
 
   ngOnDestroy() {
