@@ -12,7 +12,7 @@
   </div>
   <div class="product_list" *ngFor="let catrItem of cartList">
     <div class="icon">
-      <p><i class="fa fa-times-circle" aria-hidden="true"></i></p>
+      <p><i class="fa fa-times-circle" aria-hidden="true" (click)="removeItem(catrItem)"></i></p>
     </div>
     <div class="productH">
       <p>{{ catrItem.name }}</p>

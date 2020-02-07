@@ -24,6 +24,10 @@ export class CartPanelComponent implements OnInit, OnDestroy {
       );
   }
 
+  removeItem(product: Product) {
+    this.productSerive.removeProduct(product);
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

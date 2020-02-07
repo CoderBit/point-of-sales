@@ -38,5 +38,9 @@ export class ProductService {
 
   removeProduct(product: Product) {
     const index = this.getProductIndex(product);
+    if (index !== -1) {
+      this.cart.splice(index, 1);
+      this.cartUpdated.next([...this.cart]);
+    }
   }
 }
