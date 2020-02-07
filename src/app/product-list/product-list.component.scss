@@ -69,3 +69,15 @@ $main-bg-color: #ffffff;
   top: 61px;
   width: 100%;
 }
+
+ul li:nth-child(2n) .overlay {
+  background: #EC407A;
+} 
+
+ul li:nth-child(2n + 5) .overlay {
+  background: #27ae60;
+} 
+
+ul li:nth-child(3n + 5) .overlay {
+  background: #c0392b;
+} 
