@@ -31,6 +31,9 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe(
         (cartItems: Product[]) => {
           this.cartList = [...cartItems];
+          if (this.cartList.length === 0) {
+            this.reset();
+          }
           this.calculateSubtotal();
         }
       );
