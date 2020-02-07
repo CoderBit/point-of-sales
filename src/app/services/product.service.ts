@@ -43,4 +43,12 @@ export class ProductService {
       this.cartUpdated.next([...this.cart]);
     }
   }
+
+  decreaseItem(product: Product) {
+    const index = this.getProductIndex(product);
+    if (index !== -1) {
+      (this.cart[index].count - 1) !== 0 ? this.cart[index].count -= 1 : this.removeProduct(product);
+      this.cartUpdated.next([...this.cart]);
+    }
+  }
 }

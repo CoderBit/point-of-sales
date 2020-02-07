@@ -20,12 +20,12 @@
     <div class="priceH"><p>{{ catrItem.price }}</p></div>
     <div class="qtyH">
       <p>
-        <i class="fa fa-minus-square" aria-hidden="true"></i>
+        <i class="fa fa-minus-square" aria-hidden="true" (click)="decrease(catrItem)"></i>
         <input type="number" value="{{ catrItem.count }}"/>
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
+        <i class="fa fa-plus-square" aria-hidden="true" (click)="increase(catrItem)"></i>
       </p>
     </div>
-    <div class="totalH"><p>{{ catrItem.price }} INR</p></div>
+    <div class="totalH"><p>{{ catrItem.price * catrItem.count }} EUR</p></div>
   </div>
 </div>
 
@@ -35,8 +35,8 @@
       <p>Subtotal</p>
     </div>
     <div class="cright">
-      <p>4000 EUR</p>
-      <p>2 items</p>
+      <p>{{ cartList.length > 0 ? subtotal : 0.000 }} EUR</p>
+      <p>{{ cartList.length }} items</p>
     </div>
   </div>
   <div class="cartrow">
