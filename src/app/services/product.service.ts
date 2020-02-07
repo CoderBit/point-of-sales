@@ -54,6 +54,5 @@ export class ProductService {
 
   resetCart() {
     this.cart = [];
-    this.cartUpdated.next([...this.cart]);
   }
 }

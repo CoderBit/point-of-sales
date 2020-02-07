@@ -91,6 +91,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   reset() {
     this.productSerive.resetCart();
+    this.cartList = [];
     this.subtotal = 0.000;
     this.tax = 0.000;
     this.taxPercentage = 'N/A';
