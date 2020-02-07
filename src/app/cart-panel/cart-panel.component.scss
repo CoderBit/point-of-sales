@@ -1,5 +1,6 @@
 .no-data {
   background-color: #fff;
+  color: #888888;
   text-transform: uppercase;
   text-align: center;
   padding: 40px;
@@ -30,6 +31,7 @@
 .qty-heading,
 .total-heading {
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .icon {

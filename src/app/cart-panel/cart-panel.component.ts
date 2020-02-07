@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ProductService, Product } from '../services/product.service';
-import { Subscription, Observable, fromEvent } from 'rxjs';
-import { debounceTime, map, tap } from 'rxjs/operators';
+import { Subscription, fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart-panel',
@@ -84,6 +84,16 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
       this.discount = +updatedDiscountValue;
       this.calculateSubtotal();
     });
+  }
+
+  reset() {
+    this.productSerive.resetCart();
+    this.subtotal = 0.000;
+    this.tax = 0.000;
+    this.taxPercentage = 'N/A';
+    this.discount = 0.000;
+    this.discountPercentage = 'N/A';
+    this.total = 0.000;
   }
 
   ngOnDestroy() {

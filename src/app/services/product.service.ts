@@ -51,4 +51,9 @@ export class ProductService {
       this.cartUpdated.next([...this.cart]);
     }
   }
+
+  resetCart() {
+    this.cart = [];
+    this.cartUpdated.next([...this.cart]);
+  }
 }

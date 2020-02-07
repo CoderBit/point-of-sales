@@ -44,7 +44,7 @@
       <p>VAT Tax</p>
     </div>
     <div class="cright">
-      <p><input type="text" [value]="taxPercentage" #taxPercentageRef>%</p>
+      <p><input type="text" [(ngModel)]="taxPercentage" #taxPercentageRef>%</p>
       <p>{{ tax }} EUR</p>
     </div>
   </div>
@@ -53,7 +53,7 @@
       <p>Discount</p>
     </div>
     <div class="cright">
-      <p><input type="text" [value]="discountPercentage" #discountPercentageRef>%</p>
+      <p><input type="text" [(ngModel)]="discountPercentage" #discountPercentageRef>%</p>
       <p>{{ discount }} EUR</p>
     </div>
   </div>
@@ -67,7 +67,7 @@
     </div>
   </div>
   <div class="cartrow">
-    <button class="cancelbtm">CANCEL SALE</button>
+    <button class="cancelbtm" (click)="reset()">CANCEL SALE</button>
     <button class="savebtm">PROCESS SALE</button>
   </div>
 </div>
