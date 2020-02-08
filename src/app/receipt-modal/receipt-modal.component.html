@@ -7,8 +7,40 @@
     </div>
     <div class="modal-body">
       <h2>Sale No .:.: 00102</h2>
-      <p>Date: 01-18-2020 12:03:22</p>
-      <p>{{ message }}</p>
+      <p>Date: {{ dateAndTime }}</p>
+      <div class="items">
+        <div class="items-heading">
+          <span class="numH">#</span>
+          <span class="productH">Products</span>
+          <span class="qtyH">Quantity</span>
+          <span class="subTotalH">SubTotal</span>
+        </div>
+        <div class="items-content" *ngFor="let product of message.items; let i=index">
+          <span class="numC">{{ i+1 }}</span>
+          <span class="productC">{{ product.name }}</span>
+          <span class="qtyC">{{ product.count }}</span>
+          <span class="subTotalC">{{ product.count*product.price }} INR</span>
+        </div>
+      </div>
+      <div class="sep"></div>
+      <div class="subtotal">
+        <div class="total-items">
+          <p>Total Items</p>
+          <p>{{ message.count }}</p>
+        </div>
+        <div class="total-price">
+          <p>Total</p>
+          <p class="text-bold">{{ message.total }} INR</p>
+        </div>
+      </div>
+      <div class="sep"></div>
+      <div class="discount">
+        <p>Discount: <span class="text-bold">{{ message.discount }}%</span></p>
+      </div>
+      <div class="sep"></div>
+      <div class="vat">
+        <p>VAT: <span class="text-bold">{{ message.tax }}%</span></p>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="closebtn" (click)="onClose()">Close</button>

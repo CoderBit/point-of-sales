@@ -18,7 +18,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   discountPercentage = 'N/A';
   total = 0.000;
   private subscription: Subscription;
-  receiptDetails: string = null;
+  receiptDetails = null;
 
   @ViewChild('taxPercentageRef', {static: false}) taxPercentageRef: ElementRef;
   @ViewChild('discountPercentageRef', {static: false}) discountPercentageRef: ElementRef;
@@ -119,7 +119,13 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   processSale() {
-    this.receiptDetails = 'Hello';
+    this.receiptDetails = {
+      items: this.cartList,
+      tax: this.tax,
+      discount: this.discount,
+      total: this.total,
+      count: this.cartList.length
+    };
   }
 
   ngOnDestroy() {
