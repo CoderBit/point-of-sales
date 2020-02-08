@@ -13,7 +13,6 @@
   top: 10vh;
   left: 35vw;
   width: 30vw;
-  // padding: 16px;
   z-index: 100;
   border-radius: 5px;
   background: white;
@@ -22,11 +21,9 @@
 
 .modal-content {
   position: relative;
-  // background-color: #fff;
   background-clip: padding-box;
   border: 0;
   border-radius: 4px;
-  // box-shadow: 0 4px 12px rgba(0,0,0,.15);
   pointer-events: auto;
 }
 
@@ -40,7 +37,6 @@
 
 .modal-title {
   margin: 0;
-  // color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
@@ -139,7 +135,6 @@
   color: #000;
   padding: 10px;
   width: 100%;
-  // margin: 4% 2% 4% 0;
   border: 1px solid #aaaaaa;
   cursor: pointer;
   border-radius: 5px;

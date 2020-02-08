@@ -23,9 +23,7 @@ export class ReceiptModalComponent implements OnInit {
     if (int.length > 3) {
         int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
     }
-
     const dec = numSplit[1];
-
     return int + '.' + dec;
   }
 

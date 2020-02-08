@@ -14,7 +14,6 @@ export interface Product {
 export class ProductService {
 
   cart: Product[] = [];
-  // totalItems = 0;
   cartUpdated = new Subject();
 
   getProducts() {
