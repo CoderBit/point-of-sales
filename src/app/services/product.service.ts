@@ -14,6 +14,7 @@ export interface Product {
 export class ProductService {
 
   cart: Product[] = [];
+  // totalItems = 0;
   cartUpdated = new Subject();
 
   getProducts() {
@@ -33,14 +34,24 @@ export class ProductService {
     } else {
       this.cart[index].count += 1;
     }
-    this.cartUpdated.next([...this.cart]);
+    const totalItems = this.calculateTotalItems();
+    const data = {
+      totalItems,
+      cart: [...this.cart]
+    };
+    this.cartUpdated.next(data);
   }
 
   removeProduct(product: Product) {
     const index = this.getProductIndex(product);
     if (index !== -1) {
       this.cart.splice(index, 1);
-      this.cartUpdated.next([...this.cart]);
+      const totalItems = this.calculateTotalItems();
+      const data = {
+        totalItems,
+        cart: [...this.cart]
+      };
+      this.cartUpdated.next(data);
     }
   }
 
@@ -48,8 +59,21 @@ export class ProductService {
     const index = this.getProductIndex(product);
     if (index !== -1) {
       (this.cart[index].count - 1) !== 0 ? this.cart[index].count -= 1 : this.removeProduct(product);
-      this.cartUpdated.next([...this.cart]);
+      const totalItems = this.calculateTotalItems();
+      const data = {
+        totalItems,
+        cart: [...this.cart]
+      };
+      this.cartUpdated.next(data);
     }
+  }
+
+  calculateTotalItems() {
+    let totalItems = 0;
+    if (this.cart.length > 0) {
+      totalItems = this.cart.reduce((acc, cur) => acc + cur.count, 0);
+    }
+    return totalItems;
   }
 
   resetCart() {

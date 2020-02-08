@@ -17,8 +17,9 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   discount = 0.000;
   discountPercentage = 'N/A';
   total = 0.000;
-  private subscription: Subscription;
   receiptDetails = null;
+  totalItems = 0;
+  private subscription: Subscription;
 
   @ViewChild('taxPercentageRef', {static: false}) taxPercentageRef: ElementRef;
   @ViewChild('discountPercentageRef', {static: false}) discountPercentageRef: ElementRef;
@@ -30,8 +31,9 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
     this.calculateSubtotal();
     this.subscription = this.productSerive.cartUpdated
       .subscribe(
-        (cartItems: Product[]) => {
-          this.cartList = [...cartItems];
+        (cartItems: {totalItems: number, cart: Product[]}) => {
+          this.cartList = [...cartItems.cart];
+          this.totalItems = cartItems.totalItems;
           if (this.cartList.length === 0) {
             this.reset();
           }
@@ -99,6 +101,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
     this.discount = 0.000;
     this.discountPercentage = 'N/A';
     this.total = 0.000;
+    this.totalItems = 0;
   }
 
   formatNumber(num: number) {
@@ -124,7 +127,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
       tax: this.tax,
       discount: this.discount,
       total: this.total,
-      count: this.cartList.length
+      count: this.totalItems
     };
   }
 

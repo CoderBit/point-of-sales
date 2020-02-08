@@ -19,7 +19,7 @@
           <span class="numC">{{ i+1 }}</span>
           <span class="productC">{{ product.name }}</span>
           <span class="qtyC">{{ product.count }}</span>
-          <span class="subTotalC">{{ product.count*product.price }} INR</span>
+          <span class="subTotalC">{{ formatNumber(product.count*product.price) }} INR</span>
         </div>
       </div>
       <div class="sep"></div>
@@ -30,16 +30,16 @@
         </div>
         <div class="total-price">
           <p>Total</p>
-          <p class="text-bold">{{ message.total }} INR</p>
+          <p class="text-bold">{{ formatNumber(message.total) }} INR</p>
         </div>
       </div>
       <div class="sep"></div>
       <div class="discount">
-        <p>Discount: <span class="text-bold">{{ message.discount }}%</span></p>
+        <p>Discount: <span class="text-bold">{{ formatNumber(message.discount) }}%</span></p>
       </div>
       <div class="sep"></div>
       <div class="vat">
-        <p>VAT: <span class="text-bold">{{ message.tax }}%</span></p>
+        <p>VAT: <span class="text-bold">{{ formatNumber(message.tax) }}%</span></p>
       </div>
     </div>
     <div class="modal-footer">

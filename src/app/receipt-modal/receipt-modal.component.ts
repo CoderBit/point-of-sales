@@ -14,8 +14,19 @@ export class ReceiptModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.message);
     this.getCurrentDate();
+  }
+
+  formatNumber(num: number) {
+    const numSplit = Math.abs(num).toFixed(3).split('.');
+    let int = numSplit[0];
+    if (int.length > 3) {
+        int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+    }
+
+    const dec = numSplit[1];
+
+    return int + '.' + dec;
   }
 
   getCurrentDate() {
