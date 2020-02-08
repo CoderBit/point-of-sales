@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartPanelComponent } from './cart-panel/cart-panel.component';
 import { FormsModule } from '@angular/forms';
+import { ReceiptModalComponent } from './receipt-modal/receipt-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProductListComponent,
-    CartPanelComponent
+    CartPanelComponent,
+    ReceiptModalComponent
   ],
   imports: [
     BrowserModule,

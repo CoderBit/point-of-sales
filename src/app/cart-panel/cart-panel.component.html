@@ -68,6 +68,8 @@
   </div>
   <div class="cartrow">
     <button class="cancelbtm" (click)="reset()">CANCEL SALE</button>
-    <button class="savebtm">PROCESS SALE</button>
+    <button class="savebtm" (click)="processSale()" [disabled]="cartList.length < 1">PROCESS SALE</button>
   </div>
 </div>
+
+<app-receipt-modal [message]="receiptDetails" *ngIf="receiptDetails" (click)="onHandleClose()"></app-receipt-modal>

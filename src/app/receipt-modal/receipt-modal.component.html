@@ -1,0 +1,17 @@
+<div class="backdrop" (click)="onClose()"></div>
+
+<div class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <p class="modal-title">Receipt</p>
+    </div>
+    <div class="modal-body">
+      <h2>Sale No .:.: 00102</h2>
+      <p>Date: 01-18-2020 12:03:22</p>
+      <p>{{ message }}</p>
+    </div>
+    <div class="modal-footer">
+      <button class="closebtn" (click)="onClose()">Close</button>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  cartList = [];
+  cartList: Product[] = [];
   subtotal = 0.000;
   tax = 0.000;
   taxPercentage = 'N/A';
@@ -18,6 +18,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   discountPercentage = 'N/A';
   total = 0.000;
   private subscription: Subscription;
+  receiptDetails: string = null;
 
   @ViewChild('taxPercentageRef', {static: false}) taxPercentageRef: ElementRef;
   @ViewChild('discountPercentageRef', {static: false}) discountPercentageRef: ElementRef;
@@ -110,6 +111,15 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
     const dec = numSplit[1];
 
     return int + '.' + dec;
+  }
+
+  onHandleClose() {
+    this.receiptDetails = null;
+    this.reset();
+  }
+
+  processSale() {
+    this.receiptDetails = 'Hello';
   }
 
   ngOnDestroy() {
