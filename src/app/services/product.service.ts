@@ -78,4 +78,14 @@ export class ProductService {
   resetCart() {
     this.cart = [];
   }
+
+  formatNumber(num: number) {
+    const numSplit = Math.abs(num).toFixed(3).split('.');
+    let int = numSplit[0];
+    if (int.length > 3) {
+        int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+    }
+    const dec = numSplit[1];
+    return int + '.' + dec;
+  }
 }

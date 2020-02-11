@@ -24,12 +24,12 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('taxPercentageRef', {static: false}) taxPercentageRef: ElementRef;
   @ViewChild('discountPercentageRef', {static: false}) discountPercentageRef: ElementRef;
 
-  constructor(private productSerive: ProductService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.cartList = this.productSerive.getProducts();
+    this.cartList = this.productService.getProducts();
     this.calculateSubtotal();
-    this.subscription = this.productSerive.cartUpdated
+    this.subscription = this.productService.cartUpdated
       .subscribe(
         (cartItems: {totalItems: number, cart: Product[]}) => {
           this.cartList = [...cartItems.cart];
@@ -48,15 +48,15 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   removeItem(product: Product) {
-    this.productSerive.removeProduct(product);
+    this.productService.removeProduct(product);
   }
 
   increase(catrItem: Product) {
-    this.productSerive.addToCart(catrItem);
+    this.productService.addToCart(catrItem);
   }
 
   decrease(catrItem: Product) {
-    this.productSerive.decreaseItem(catrItem);
+    this.productService.decreaseItem(catrItem);
   }
 
   private calculateSubtotal() {
@@ -93,7 +93,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   reset() {
-    this.productSerive.resetCart();
+    this.productService.resetCart();
     this.cartList = [];
     this.subtotal = 0.000;
     this.tax = 0.000;
@@ -105,13 +105,7 @@ export class CartPanelComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   formatNumber(num: number) {
-    const numSplit = Math.abs(num).toFixed(3).split('.');
-    let int = numSplit[0];
-    if (int.length > 3) {
-        int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
-    }
-    const dec = numSplit[1];
-    return int + '.' + dec;
+    return this.productService.formatNumber(num);
   }
 
   onHandleClose() {
